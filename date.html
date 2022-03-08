@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Вывод даты</title>
+  <script type="text/javascript">
+    function getDayInfo() {
+      function stringToDate(_date,_format,_delimiter)
+      {
+            var formatLowerCase=_format.toLowerCase();
+            var formatItems=formatLowerCase.split(_delimiter);
+            var dateItems=_date.split(_delimiter);
+            var monthIndex=formatItems.indexOf("mm");
+            var dayIndex=formatItems.indexOf("dd");
+            var yearIndex=formatItems.indexOf("yyyy");
+            var month=parseInt(dateItems[monthIndex]);
+            month-=1;
+            var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+            return formatedDate;
+      }
+      var date = new Date(stringToDate(prompt('Введите дату (дд.мм.гггг): '), 'dd.mm.yyyy', '.'));
+      var dayNames = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+      function Week(date){
+      var week = ['1', '2', '3', '4', '5', '6'];
+      return week[Math.floor(date.getDate() / 7)];
+      }
+      var monNames = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+      alert(dayNames[date.getDay()] + ', ' + Week(date) + ' неделя ' + monNames[date.getMonth()] + ' ' + date.getFullYear() + ' года');
+    }
+  </script>
+</head>
+<body>
+<button type="submit" id="submit" onclick="getDayInfo();">О дате</button>
+</body>
+</html>
